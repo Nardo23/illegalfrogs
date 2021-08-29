@@ -8,10 +8,13 @@ public class parallax : MonoBehaviour
     public float parallaxStrength;
     float prevX;
     float newX;
+    
+
     // Start is called before the first frame update
     void Start()
     {
         prevX = Player.transform.position.x;
+        
     }
 
     // Update is called once per frame

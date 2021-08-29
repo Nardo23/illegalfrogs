@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class player : MonoBehaviour
 {
-    public int checkpointCount =0;
+    public int checkpointCount = 0;
     [SerializeField]
     public Transform[] checkpoints;
 
     bool move = false;
     Transform destination;
-
-    public float speed =1;
-
+    Animator anim;
+    public float speed = 1;
+    public GameObject moveButton;
+    public GameObject speakButton;
+    public GameObject bubble;
     // Start is called before the first frame update
     void Start()
     {
-        destination =  checkpoints[checkpointCount];
+        destination = checkpoints[checkpointCount];
+        anim = GetComponent<Animator>();
+        speakButton.SetActive(false);
+        moveButton.SetActive(true);
     }
 
     // Update is called once per frame
@@ -25,14 +30,17 @@ public class player : MonoBehaviour
 
         if (move)
         {
-            transform.position = Vector3.MoveTowards(this.transform.position, destination.position, speed*Time.deltaTime);
+            transform.position = Vector3.MoveTowards(this.transform.position, destination.position, speed * Time.deltaTime);
             //Debug.Log("curent: "+ this.transform.position+ "destination: "+ destination.position);
 
-            if(Mathf.Abs(Vector3.Distance(this.transform.position, destination.position)) <= .25f)
+            if (Mathf.Abs(Vector3.Distance(this.transform.position, destination.position)) <= .25f)
             {
                 //Debug.Log("position snap");
                 transform.position = destination.position;
                 move = false;
+                anim.SetTrigger("idle");
+                moveButton.SetActive(false);
+                speakButton.SetActive(true);
             }
 
 
@@ -51,15 +59,24 @@ public class player : MonoBehaviour
                 move = true;
                 destination = checkpoints[checkpointCount];
                 destination.position = new Vector3(checkpoints[checkpointCount].position.x, transform.position.y, transform.position.z);
-                checkpointCount ++;
+                checkpointCount++;
+                anim.SetTrigger("hop");
             }
         }
-        
+
 
 
     }
 
-
-
+    public void toggle()
+    {
+        moveButton.SetActive(true);
+        speakButton.SetActive(false);
+    }
+    public void speak()
+    {
+        bubble.SetActive(true);
+        speakButton.SetActive(false);
+    }
 
 }
