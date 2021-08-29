@@ -15,6 +15,8 @@ public class player : MonoBehaviour
     public GameObject moveButton;
     public GameObject speakButton;
     public GameObject bubble;
+    public GameObject cop;
+    bool reset = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,8 @@ public class player : MonoBehaviour
         speakButton.SetActive(false);
         moveButton.SetActive(true);
         bubble.SetActive(false);
+        cop.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -33,7 +37,17 @@ public class player : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(this.transform.position, destination.position, speed * Time.deltaTime);
             //Debug.Log("curent: "+ this.transform.position+ "destination: "+ destination.position);
-
+            if(Mathf.Abs(Vector3.Distance(this.transform.position, destination.position)) <=7 && !reset)
+            {
+                cop.SetActive(false);
+                reset = true;
+            }
+            if (Mathf.Abs(Vector3.Distance(this.transform.position, destination.position)) <= 6)
+            {
+                cop.transform.position = new Vector3(transform.position.x+2, cop.transform.position.y, cop.transform.position.z);
+                cop.transform.parent = this.transform;
+                cop.SetActive(true);
+            }
             if (Mathf.Abs(Vector3.Distance(this.transform.position, destination.position)) <= .25f)
             {
                 //Debug.Log("position snap");
@@ -42,6 +56,8 @@ public class player : MonoBehaviour
                 anim.SetTrigger("idle");
                 moveButton.SetActive(false);
                 speakButton.SetActive(true);
+                cop.transform.parent = null;
+                reset = false;
             }
 
 
