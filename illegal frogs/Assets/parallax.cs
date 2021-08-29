@@ -19,8 +19,8 @@ public class parallax : MonoBehaviour
     {
         if (Player.transform.position.x != prevX)
         {
-            newX += Mathf.Abs(Player.transform.position.x - prevX) * parallaxStrength;
-            transform.position = new Vector3(newX, transform.position.y, transform.position.z);
+            newX = (Mathf.Abs(Player.transform.position.x - prevX) * parallaxStrength);
+            transform.position = new Vector3(transform.position.x+newX, transform.position.y, transform.position.z);
         }
 
 
