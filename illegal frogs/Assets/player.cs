@@ -16,7 +16,7 @@ public class player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        destination = transform;
+        destination =  checkpoints[checkpointCount];
     }
 
     // Update is called once per frame
@@ -25,9 +25,12 @@ public class player : MonoBehaviour
 
         if (move)
         {
-            transform.position = Vector3.MoveTowards(transform.position, destination.position, speed*Time.deltaTime);
-            if(Vector3.Distance(transform.position, destination.position) < .25f)
+            transform.position = Vector3.MoveTowards(this.transform.position, destination.position, speed*Time.deltaTime);
+            //Debug.Log("curent: "+ this.transform.position+ "destination: "+ destination.position);
+
+            if(Mathf.Abs(Vector3.Distance(this.transform.position, destination.position)) <= .25f)
             {
+                //Debug.Log("position snap");
                 transform.position = destination.position;
                 move = false;
             }
@@ -46,6 +49,7 @@ public class player : MonoBehaviour
             if (checkpointCount < checkpoints.Length)
             {
                 move = true;
+                destination = checkpoints[checkpointCount];
                 destination.position = new Vector3(checkpoints[checkpointCount].position.x, transform.position.y, transform.position.z);
                 checkpointCount ++;
             }
