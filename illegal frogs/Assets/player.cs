@@ -22,6 +22,7 @@ public class player : MonoBehaviour
         anim = GetComponent<Animator>();
         speakButton.SetActive(false);
         moveButton.SetActive(true);
+        bubble.SetActive(false);
     }
 
     // Update is called once per frame
