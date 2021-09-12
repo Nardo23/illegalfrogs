@@ -16,7 +16,9 @@ public class player : MonoBehaviour
     public GameObject speakButton;
     public GameObject bubble;
     public GameObject cop;
+    public GameObject eatButton;
     bool reset = false;
+    bool eaten = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +28,7 @@ public class player : MonoBehaviour
         moveButton.SetActive(true);
         bubble.SetActive(false);
         cop.SetActive(false);
-        
+        eatButton.SetActive(false);
     }
 
     // Update is called once per frame
@@ -55,9 +57,17 @@ public class player : MonoBehaviour
                 move = false;
                 anim.SetTrigger("idle");
                 moveButton.SetActive(false);
-                speakButton.SetActive(true);
-                cop.transform.parent = null;
-                reset = false;
+                if (checkpointCount == checkpoints.Length)
+                {
+                    eatButton.SetActive(true);
+                }
+                else
+                {
+                    
+                    speakButton.SetActive(true);
+                    cop.transform.parent = null;
+                    reset = false;
+                }
             }
 
 
@@ -94,6 +104,16 @@ public class player : MonoBehaviour
     {
         bubble.SetActive(true);
         speakButton.SetActive(false);
+    }
+    public void eat()
+    {
+        if (!eaten)
+        {
+            eaten = true;
+            anim.SetTrigger("eat");
+            cop.SetActive(false);
+        }
+        
     }
 
 }
