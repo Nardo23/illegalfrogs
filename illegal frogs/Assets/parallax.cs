@@ -20,7 +20,7 @@ public class parallax : MonoBehaviour
     // Update is called once per frame
     
     
-    private void Update()
+    private void FixedUpdate()
     {
         if (Player.transform.position.x != prevX && timer >= parallaxWait)
         {
