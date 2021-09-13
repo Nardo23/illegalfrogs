@@ -28,6 +28,9 @@ public class player : MonoBehaviour
     public Vector2 pitchRange;
     public GameObject endScreen;
     public Transform playerParent;
+    public AudioClip bite;
+    public AudioClip talk;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -117,6 +120,7 @@ public class player : MonoBehaviour
     {
         bubble.SetActive(true);
         speakButton.SetActive(false);
+        talkSound();
     }
     public void eat()
     {
@@ -125,6 +129,8 @@ public class player : MonoBehaviour
             eaten = true;
             anim.SetTrigger("eat");
             cop.SetActive(false);
+            speakButton.SetActive(false);
+            eatButton.SetActive(false);
         }
         
     }
@@ -133,12 +139,14 @@ public class player : MonoBehaviour
     {
         if (firsthop)
         {
+            sor.volume = 1f;
             sor.pitch = Random.Range(pitchRange.x, pitchRange.y);
             sor.PlayOneShot(hop2[Random.Range(0,hop2.Length)]);
             firsthop = !firsthop;
         }
         else
         {
+            sor.volume = 1f;
             sor.pitch = Random.Range(pitchRange.x, pitchRange.y);
             sor.PlayOneShot(hop1[Random.Range(0, hop1.Length)]);
             firsthop = !firsthop;
@@ -150,9 +158,23 @@ public class player : MonoBehaviour
     {
         endScreen.transform.position = transform.position;
         endScreen.SetActive(true);
-        transform.SetParent(playerParent);
+        //transform.SetParent(playerParent);
         speakButton.SetActive(false);
         eatButton.SetActive(false);
+    }
+
+    void biteSound()
+    {
+        sor.pitch = 1;
+        sor.volume = 1f;
+        sor.PlayOneShot(bite);
+
+    }
+    void talkSound()
+    {
+        sor.volume = .65f;
+        sor.pitch = 1;
+        sor.PlayOneShot(talk);
     }
 
 }

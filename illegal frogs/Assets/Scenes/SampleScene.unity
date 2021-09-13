@@ -974,7 +974,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4ace7b420fe02104bb3578c2ecc17b1f, type: 3}
   pitchRange: {x: 0.98, y: 1.02}
   endScreen: {fileID: 916632685}
-  playerParent: {fileID: 0}
+  playerParent: {fileID: 362106300}
+  bite: {fileID: 8300000, guid: 5abbb48914b80d04ba515b660d99b4ea, type: 3}
+  talk: {fileID: 8300000, guid: 6ff42974060b5b9469f15e8607327d82, type: 3}
 --- !u!212 &359329881
 SpriteRenderer:
   m_ObjectHideFlags: 0
