@@ -19,9 +19,18 @@ public class player : MonoBehaviour
     public GameObject eatButton;
     bool reset = false;
     bool eaten = false;
+    AudioSource sor;
+    [SerializeField]
+    AudioClip[] hop1;
+    [SerializeField]
+    AudioClip[] hop2;
+    bool firsthop = false;
+    public Vector2 pitchRange;
+
     // Start is called before the first frame update
     void Start()
     {
+        sor = GetComponent<AudioSource>();
         destination = checkpoints[checkpointCount];
         anim = GetComponent<Animator>();
         speakButton.SetActive(false);
@@ -115,5 +124,23 @@ public class player : MonoBehaviour
         }
         
     }
+
+    void hopSound()
+    {
+        if (firsthop)
+        {
+            sor.pitch = Random.Range(pitchRange.x, pitchRange.y);
+            sor.PlayOneShot(hop2[Random.Range(0,hop2.Length)]);
+            firsthop = !firsthop;
+        }
+        else
+        {
+            sor.pitch = Random.Range(pitchRange.x, pitchRange.y);
+            sor.PlayOneShot(hop1[Random.Range(0, hop1.Length)]);
+            firsthop = !firsthop;
+        }
+        //Debug.Log(firsthop);
+    }
+
 
 }
