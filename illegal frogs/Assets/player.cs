@@ -26,7 +26,8 @@ public class player : MonoBehaviour
     AudioClip[] hop2;
     bool firsthop = false;
     public Vector2 pitchRange;
-
+    public GameObject endScreen;
+    public Transform playerParent;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +39,7 @@ public class player : MonoBehaviour
         bubble.SetActive(false);
         cop.SetActive(false);
         eatButton.SetActive(false);
+        endScreen.SetActive(false);
     }
 
     // Update is called once per frame
@@ -92,11 +94,13 @@ public class player : MonoBehaviour
         {
             if (checkpointCount < checkpoints.Length)
             {
+                
                 move = true;
                 destination = checkpoints[checkpointCount];
                 destination.position = new Vector3(checkpoints[checkpointCount].position.x, transform.position.y, transform.position.z);
                 checkpointCount++;
                 anim.SetTrigger("hop");
+                //Debug.Log(checkpointCount);
             }
         }
 
@@ -142,5 +146,13 @@ public class player : MonoBehaviour
         //Debug.Log(firsthop);
     }
 
+    public void end()
+    {
+        endScreen.transform.position = transform.position;
+        endScreen.SetActive(true);
+        transform.SetParent(playerParent);
+        speakButton.SetActive(false);
+        eatButton.SetActive(false);
+    }
 
 }
