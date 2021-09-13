@@ -30,7 +30,8 @@ public class player : MonoBehaviour
     public Transform playerParent;
     public AudioClip bite;
     public AudioClip talk;
-
+    public GameObject crimes;
+    public float crimeSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,8 +53,9 @@ public class player : MonoBehaviour
         if (move)
         {
             transform.position = Vector3.MoveTowards(this.transform.position, destination.position, speed * Time.deltaTime);
+            crimes.transform.position = new Vector3(crimes.transform.position.x - crimeSpeed * Time.deltaTime, crimes.transform.position.y, crimes.transform.position.z);
             //Debug.Log("curent: "+ this.transform.position+ "destination: "+ destination.position);
-            if(Mathf.Abs(Vector3.Distance(this.transform.position, destination.position)) <=7 && !reset)
+            if (Mathf.Abs(Vector3.Distance(this.transform.position, destination.position)) <=7 && !reset)
             {
                 cop.SetActive(false);
                 reset = true;

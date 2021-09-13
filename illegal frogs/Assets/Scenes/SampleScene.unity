@@ -979,6 +979,8 @@ MonoBehaviour:
   playerParent: {fileID: 362106300}
   bite: {fileID: 8300000, guid: 5abbb48914b80d04ba515b660d99b4ea, type: 3}
   talk: {fileID: 8300000, guid: 6ff42974060b5b9469f15e8607327d82, type: 3}
+  crimes: {fileID: 1275377582}
+  crimeSpeed: 3.11
 --- !u!212 &359329881
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2936,7 +2938,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1275377583}
-  - component: {fileID: 1275377584}
   m_Layer: 0
   m_Name: bg
   m_TagString: Untagged
@@ -2972,21 +2973,6 @@ Transform:
   m_Father: {fileID: 359329882}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1275377584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275377582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 233510c21cc7cc74bbf48d33d51f042b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 359329879}
-  parallaxWait: 0.015
-  strength: -1
 --- !u!1 &1308915876
 GameObject:
   m_ObjectHideFlags: 0
