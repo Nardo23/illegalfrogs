@@ -5,11 +5,13 @@ using UnityEngine;
 public class copSound : MonoBehaviour
 {
     AudioSource sor;
+    public AudioSource talkSor;
     [SerializeField]
     AudioClip[] footsteps;
     [SerializeField]
     AudioClip[] trombone;
     public Vector2 pitchRange;
+    public Vector2 talkPitchRange;
 
     public Vector2 Amount;
     bool started = false;
@@ -48,8 +50,8 @@ public class copSound : MonoBehaviour
                 }
                 else
                 {
-                    sor.pitch = Random.Range(pitchRange.x, pitchRange.y);
-                    sor.PlayOneShot(trombone[Random.Range(0, trombone.Length)]);
+                    talkSor.pitch = Random.Range(talkPitchRange.x, talkPitchRange.y);
+                    talkSor.PlayOneShot(trombone[Random.Range(0, trombone.Length)]);
                     timeGoal = Random.Range(timeRange.x, timeRange.y);
                     timer = 0;
                     q++;
